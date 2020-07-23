@@ -3,7 +3,7 @@ import java.util.*;
 public class Product {
 
     private String productName;
-    private List<Map<String, String>> productRows;
+    private List<Row> productRows;
 
     public Product(String productName) {
         this.productName = productName;
@@ -14,7 +14,7 @@ public class Product {
         return this.productName;
     }
 
-    public void addProductRow(Map<String, String> productRow) {
+    public void addProductRow(Row productRow) {
         productRows.add(productRow);
     }
 
@@ -30,23 +30,23 @@ public class Product {
         //loop through possible originYear's
         try {
             for (int originYear = startingYear; originYear < (lastYear + 1); originYear++) {
-                Map<String, String> productRow = productRows.get(rowCounter);
-                int originYearForRow = Integer.parseInt(productRow.get("originYear"));
-                int developmentYearForRow = Integer.parseInt(productRow.get("developmentYear"));
+                Row productRow = productRows.get(rowCounter);
+                int originYearForRow = productRow.getOriginYear();
+                int developmentYearForRow = productRow.getDevelopmentYear();
 
                 //loop through possible developmentYears
                 for (int developmentYear = originYear; developmentYear < (lastYear + 1); developmentYear++) {
 
                     //if originYear & developmentYear match, accumulate then move onto next row of data
                     if ((originYearForRow == originYear) && (developmentYearForRow == developmentYear)) {
-                        accumulatedValue += Double.parseDouble(productRow.get("incrementalValue"));
+                        accumulatedValue += productRow.getIncrementalValue();
 
                         //match found so look at next row
                         rowCounter++;
                         if (rowCounter < productRows.size()) {
                             productRow = productRows.get(rowCounter);
-                            originYearForRow = Integer.parseInt(productRow.get("originYear"));
-                            developmentYearForRow = Integer.parseInt(productRow.get("developmentYear"));
+                            originYearForRow = productRow.getOriginYear();
+                            developmentYearForRow = productRow.getDevelopmentYear();
                         }
 
                     }

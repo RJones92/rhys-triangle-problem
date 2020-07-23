@@ -1,41 +1,35 @@
 
-import com.sun.source.tree.IfTree;
-
 import java.io.IOException;
 import java.util.*;
 
 public class Main {
 
-    static final String INPUT_FILEPATH = "testfiles/testIn.csv";
-    static final String OUTPUT_FILEPATH = "outputFile.csv";
+    public static void main(String[] args) throws IOException {
 
-    public static void main(String[] args) {
-
-        //Read in the .csv file
-        List<Map<String, String>> rowsOfData = CsvReader.readCsv(INPUT_FILEPATH);
+        CsvReader csvReader = new CsvReader();
+        List<Row> rowsOfData = csvReader.readCsv(args[0]);
 
         //find the lowest origin year and range of years, for the first line of the output.
         int lowestOriginYear = 0;
         int highestDevelopmentYear = 0;
         List<Product> products = new ArrayList<>();
 
-        for (Map<String, String> row : rowsOfData) {
-            System.out.println(row);
+        for (Row row : rowsOfData) {
 
             //Find and set the lowest origin year
-            int originYear = Integer.parseInt(row.get("originYear"));
+            int originYear = row.getOriginYear();
             if (originYear < lowestOriginYear || lowestOriginYear == 0) {
                 lowestOriginYear = originYear;
             }
 
             //Find and set the highest development year
-            int developmentYear = Integer.parseInt(row.get("developmentYear"));
+            int developmentYear = row.getDevelopmentYear();
             if (developmentYear > highestDevelopmentYear || developmentYear == 0) {
                 highestDevelopmentYear = developmentYear;
             }
 
             //Create a new Product object for each new product
-            String productName = row.get("product");
+            String productName = row.getProductName();
             if (products.isEmpty()) {
                 products.add(new Product(productName));
             } else {
@@ -72,17 +66,12 @@ public class Main {
         }
 
         //send each product triangle calculation to be written to a csv file
-        try{
-            CsvWriter.writeCsv(outputList,OUTPUT_FILEPATH);
-        } catch (IOException e){
-            System.out.println("IOException found.");
-            e.printStackTrace();
-        }
+        CsvWriter.writeCsv(outputList, args[1]);
 
     }
 
 
-    private static boolean productExists(String productName, List<Product> products){
+    private static boolean productExists(String productName, List<Product> products) {
         boolean productAlreadyExits = false;
         for (int i = 0; i < products.size(); i++) {
             if (products.get(i).getProductName().equals(productName)) {
