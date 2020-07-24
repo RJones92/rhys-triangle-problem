@@ -19,8 +19,9 @@ public class ProductMapper extends ProductGroup {
                 setHighestDevelopmentYear(row.getDevelopmentYear());
             }
 
-            if (isNewProduct(row)) {
-                addProduct(new Product(row.getProductName()));
+            String productName = row.getProductName();
+            if (isNewProduct(productName)) {
+                addProduct(productName, new Product(productName));
             }
 
             addRowToProduct(row);
@@ -43,33 +44,26 @@ public class ProductMapper extends ProductGroup {
         return false;
     }
 
-    private boolean isNewProduct(Row row) {
-        String productName = row.getProductName();
+    private boolean isNewProduct(String productName) {
         if (getProducts().isEmpty()) {
             return true;
         } else {
-            if (!productExists(productName, getProducts())) {
+            if (!productExists(productName)) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean productExists(String productName, List<Product> products) {
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getProductName().equals(productName)) {
-                return true;
-            }
+    private boolean productExists(String productName) {
+        if (getProducts().get(productName) != null) {
+            return true;
         }
         return false;
     }
 
     private void addRowToProduct(Row row) {
-        for (Product product : getProducts()) {
-            if (product.getProductName().equals(row.getProductName())) {
-                product.addProductRow(row);
-                break;
-            }
-        }
+        Product product = getProducts().get(row.getProductName());
+        product.addProductRow(row);
     }
 }

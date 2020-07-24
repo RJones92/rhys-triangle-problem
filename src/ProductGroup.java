@@ -1,17 +1,16 @@
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProductGroup {
 
-    private int lowestOriginYear = 0;
-    private int highestDevelopmentYear = 0;
-    private List<Product> products;
+    private int lowestOriginYear;
+    private int highestDevelopmentYear;
+    private Map<String, Product> products;
 
     public ProductGroup(){
         this.lowestOriginYear = 0;
         this.highestDevelopmentYear = 0;
-        this.products = new ArrayList<>();
+        this.products = new HashMap<>();
     }
 
     public int getLowestOriginYear() {
@@ -22,8 +21,7 @@ public class ProductGroup {
         return highestDevelopmentYear;
     }
 
-
-    public List<Product> getProducts() {
+    public Map<String, Product> getProducts() {
         return products;
     }
 
@@ -35,7 +33,7 @@ public class ProductGroup {
         this.highestDevelopmentYear = highestDevelopmentYear;
     }
 
-    public void addProduct(Product product){
-        this.products.add(product);
+    public void addProduct(String productName, Product product){
+        this.products.put(productName, product);
     }
 }

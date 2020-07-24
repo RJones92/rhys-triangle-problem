@@ -5,3 +5,5 @@ out/
 *.ipr
 *.iws
 outputFile.csv
+output.csv
+src/resources

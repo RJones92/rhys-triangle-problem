@@ -12,6 +12,7 @@ public class Main {
         ProductMapper productMapper = new ProductMapper(rowsOfData);
 
 
+
         //Data store for csv output file
         List<List<String>> outputList = new LinkedList<>();
 
@@ -24,7 +25,7 @@ public class Main {
         ));
 
         //for each product, calculate the 'triangle' then add as a line in the output file
-        for (Product product : productMapper.getProducts()) {
+        for (Product product : productMapper.getProducts().values()) {
             outputList.add(product.calculateOutput(productMapper.getLowestOriginYear(), productMapper.getHighestDevelopmentYear()));
         }
 
