@@ -25,6 +25,10 @@ public class ProductGroup {
         return products;
     }
 
+    public int getRangeOfYears(){
+        return ((highestDevelopmentYear - lowestOriginYear) + 1);
+    }
+
     public void setLowestOriginYear(int lowestOriginYear) {
         this.lowestOriginYear = lowestOriginYear;
     }

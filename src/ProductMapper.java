@@ -4,10 +4,10 @@ public class ProductMapper extends ProductGroup {
 
     public ProductMapper(List<Row> rowsOfData) {
         super();
-        setProductGroup(rowsOfData);
+        mapProducts(rowsOfData);
     }
 
-    public void setProductGroup(List<Row> rowsOfData) {
+    public void mapProducts(List<Row> rowsOfData) {
 
         for (Row row : rowsOfData) {
 
@@ -34,6 +34,7 @@ public class ProductMapper extends ProductGroup {
             return true;
         }
         return false;
+
     }
 
     private boolean isHighestDevelopmentYear(Row row) {
@@ -48,22 +49,17 @@ public class ProductMapper extends ProductGroup {
         if (getProducts().isEmpty()) {
             return true;
         } else {
-            if (!productExists(productName)) {
-                return true;
-            }
+            return !productExists(productName);
         }
-        return false;
     }
 
     private boolean productExists(String productName) {
-        if (getProducts().get(productName) != null) {
-            return true;
-        }
-        return false;
+        return getProducts().get(productName) != null;
     }
 
     private void addRowToProduct(Row row) {
         Product product = getProducts().get(row.getProductName());
         product.addProductRow(row);
     }
+
 }
