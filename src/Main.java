@@ -9,9 +9,11 @@ public class Main {
         CsvReader csvReader = new CsvReader();
         List<Row> rowsOfData = csvReader.readCsv(args[0]);
 
-        ProductMapper productMapper = new ProductMapper(rowsOfData);
+        ProductMapper productMapper = new ProductMapper();
+        productMapper.mapProducts(rowsOfData);
 
-        TriangleMapper triangleMapper = new TriangleMapper(productMapper);
+        TriangleMapper triangleMapper = new TriangleMapper();
+        triangleMapper.mapTriangles(productMapper);
 
         CsvWriter csvWriter = new CsvWriter();
         csvWriter.writeCsv(triangleMapper, productMapper, args[1]);

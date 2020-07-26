@@ -2,9 +2,8 @@ import java.util.List;
 
 public class ProductMapper extends ProductGroup {
 
-    public ProductMapper(List<Row> rowsOfData) {
+    public ProductMapper() {
         super();
-        mapProducts(rowsOfData);
     }
 
     public void mapProducts(List<Row> rowsOfData) {

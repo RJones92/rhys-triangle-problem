@@ -1,11 +1,10 @@
 public class TriangleMapper extends TriangleGroup {
     
-    public TriangleMapper(ProductGroup productGroup){
+    public TriangleMapper(){
         super();
-        mapTriangles(productGroup);
     }
 
-    private void mapTriangles(ProductGroup productGroup){
+    public void mapTriangles(ProductGroup productGroup){
         for (Product product : productGroup.getProducts().values()) {
             addTriangle(product, productGroup);
         }
