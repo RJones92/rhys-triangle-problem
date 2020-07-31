@@ -1,17 +1,21 @@
+package triangle;
+
 import java.util.List;
 
-public class ProductMapper extends ProductGroup {
+public class ProductMapper extends ProductGroup{
+
+
 
     public ProductMapper() {
         super();
     }
 
     public void mapProducts(List<Row> rowsOfData) {
-
+        ProductGroup productGroup = new ProductGroup();
         for (Row row : rowsOfData) {
 
             if (isLowestOriginYear(row)) {
-                setLowestOriginYear(row.getOriginYear());
+                productGroup.setLowestOriginYear(row.getOriginYear());
             }
 
             if (isHighestDevelopmentYear(row)) {

@@ -1,3 +1,5 @@
+package triangle;
+
 public class Row {
     private String productName;
     private int originYear;

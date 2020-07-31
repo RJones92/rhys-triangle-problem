@@ -7,3 +7,4 @@ out/
 outputFile.csv
 output.csv
 src/resources
+/target/

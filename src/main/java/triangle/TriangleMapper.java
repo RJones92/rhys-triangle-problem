@@ -1,3 +1,5 @@
+package triangle;
+
 public class TriangleMapper extends TriangleGroup {
     
     public TriangleMapper(){

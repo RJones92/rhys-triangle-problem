@@ -1,3 +1,5 @@
+package triangle;
+
 import java.util.*;
 
 public class Product {
