@@ -2,16 +2,16 @@ package triangle;
 
 import java.util.List;
 
-public class ProductMapper extends ProductGroup{
+public class ProductMapper {
 
-
+    private final ProductGroup productGroup;
 
     public ProductMapper() {
         super();
+        productGroup = new ProductGroup();
     }
 
-    public void mapProducts(List<Row> rowsOfData) {
-        ProductGroup productGroup = new ProductGroup();
+    public ProductGroup mapProducts(List<Row> rowsOfData) {
         for (Row row : rowsOfData) {
 
             if (isLowestOriginYear(row)) {
@@ -19,21 +19,22 @@ public class ProductMapper extends ProductGroup{
             }
 
             if (isHighestDevelopmentYear(row)) {
-                setHighestDevelopmentYear(row.getDevelopmentYear());
+                productGroup.setHighestDevelopmentYear(row.getDevelopmentYear());
             }
 
             String productName = row.getProductName();
             if (isNewProduct(productName)) {
-                addProduct(productName, new Product(productName));
+                productGroup.addProduct(productName, new Product(productName));
             }
 
             addRowToProduct(row);
         }
+        return productGroup;
     }
 
     private boolean isLowestOriginYear(Row row) {
         int originYear = row.getOriginYear();
-        if (originYear < getLowestOriginYear() || getLowestOriginYear() == 0) {
+        if (originYear < productGroup.getLowestOriginYear() || productGroup.getLowestOriginYear() == 0) {
             return true;
         }
         return false;
@@ -42,14 +43,14 @@ public class ProductMapper extends ProductGroup{
 
     private boolean isHighestDevelopmentYear(Row row) {
         int developmentYear = row.getDevelopmentYear();
-        if (developmentYear > getHighestDevelopmentYear() || getHighestDevelopmentYear() == 0) {
+        if (developmentYear > productGroup.getHighestDevelopmentYear() || productGroup.getHighestDevelopmentYear() == 0) {
             return true;
         }
         return false;
     }
 
     private boolean isNewProduct(String productName) {
-        if (getProducts().isEmpty()) {
+        if (productGroup.getProducts().isEmpty()) {
             return true;
         } else {
             return !productExists(productName);
@@ -57,11 +58,11 @@ public class ProductMapper extends ProductGroup{
     }
 
     private boolean productExists(String productName) {
-        return getProducts().get(productName) != null;
+        return productGroup.getProducts().get(productName) != null;
     }
 
     private void addRowToProduct(Row row) {
-        Product product = getProducts().get(row.getProductName());
+        Product product = productGroup.getProducts().get(row.getProductName());
         product.addProductRow(row);
     }
 

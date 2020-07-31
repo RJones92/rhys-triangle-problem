@@ -1,15 +1,19 @@
 package triangle;
 
-public class TriangleMapper extends TriangleGroup {
-    
+public class TriangleMapper {
+
+    private final TriangleGroup triangleGroup;
+
     public TriangleMapper(){
         super();
+        triangleGroup = new TriangleGroup();
     }
 
-    public void mapTriangles(ProductGroup productGroup){
+    public TriangleGroup mapTriangles(ProductGroup productGroup){
         for (Product product : productGroup.getProducts().values()) {
-            addTriangle(product, productGroup);
+            triangleGroup.addTriangle(product, productGroup);
         }
+        return triangleGroup;
     }
 
 

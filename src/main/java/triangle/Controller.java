@@ -5,9 +5,7 @@ import java.util.List;
 
 public class Controller {
 
-
 	private final CsvReader reader;
-
 	private final CsvWriter csvWriter;
 	private final ProductMapper productMapper;
 	private final TriangleMapper triangleMapper;
@@ -21,8 +19,8 @@ public class Controller {
 
 	public void sumTriangles(String inputFile, String outputFile) throws IOException {
 		List<Row> rowsOfData = reader.readCsv(inputFile);
-		productMapper.mapProducts(rowsOfData);
-		triangleMapper.mapTriangles(productMapper);
-		csvWriter.writeCsv(triangleMapper, productMapper, outputFile);
+		ProductGroup productGroup = productMapper.mapProducts(rowsOfData);
+		TriangleGroup triangleGroup = triangleMapper.mapTriangles(productGroup);
+		csvWriter.writeCsv(triangleGroup, productGroup, outputFile);
 	}
 }

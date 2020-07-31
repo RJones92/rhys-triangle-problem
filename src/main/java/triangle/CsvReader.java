@@ -33,25 +33,4 @@ public class CsvReader{
         incrementalClaimsData.readLine();
     }
 
-//    private List<Map<String, String>> mapValuesForEachRow(List<List<String>> listToMap){
-//
-//        List<Map<String, String>> data = new ArrayList<>();
-//
-//        for (List<String> rowFromList : listToMap) {
-//            Map<String, String> mappedRow = new HashMap<>();
-//
-//            String product = rowFromList.get(0);
-//            String originYear = rowFromList.get(1);
-//            String developmentYear = rowFromList.get(2);
-//            String incrementalValue = rowFromList.get(3);
-//
-//            mappedRow.put("product", product);
-//            mappedRow.put("originYear", originYear);
-//            mappedRow.put("developmentYear", developmentYear);
-//            mappedRow.put("incrementalValue", incrementalValue);
-//            data.add(mappedRow);
-//        }
-//        return data;
-//    }
-
 }
