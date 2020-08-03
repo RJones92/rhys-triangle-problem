@@ -6,8 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CsvReader{
+public class CsvReader implements Reader{
 
+    @Override
     public List<Row> readCsv(String filename) throws IOException{
 
         List<Row> rowsFromCsv = new ArrayList<>();

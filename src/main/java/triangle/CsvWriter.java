@@ -4,8 +4,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class CsvWriter {
+public class CsvWriter implements Writer{
 
+    @Override
     public void writeCsv(TriangleGroup triangleGroup, ProductGroup productGroup, String filename) throws IOException {
 
         try (BufferedWriter csvWriter = new BufferedWriter(new FileWriter(filename))) {
