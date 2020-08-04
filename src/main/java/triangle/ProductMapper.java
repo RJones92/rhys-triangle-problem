@@ -2,17 +2,17 @@ package triangle;
 
 import java.util.List;
 
-public class ProductMapper {
+public class ProductMapper implements Mapper<List<Row>, ProductGroup> {
 
     private final ProductGroup productGroup;
 
     public ProductMapper() {
-        super();
         productGroup = new ProductGroup();
     }
 
-    public ProductGroup mapProducts(List<Row> rowsOfData) {
-        for (Row row : rowsOfData) {
+    @Override
+    public ProductGroup mapObjects(List<Row> rows) {
+        for (Row row : rows) {
 
             if (isLowestOriginYear(row)) {
                 productGroup.setLowestOriginYear(row.getOriginYear());
@@ -24,7 +24,7 @@ public class ProductMapper {
 
             String productName = row.getProductName();
             if (isNewProduct(productName)) {
-                productGroup.addProduct(productName, new Product(productName));
+                productGroup.addObjectToGroup(productName, new Product(productName));
             }
 
             addRowToProduct(row);
@@ -50,7 +50,7 @@ public class ProductMapper {
     }
 
     private boolean isNewProduct(String productName) {
-        if (productGroup.getProducts().isEmpty()) {
+        if (productGroup.getGroup().isEmpty()) {
             return true;
         } else {
             return !productExists(productName);
@@ -58,11 +58,11 @@ public class ProductMapper {
     }
 
     private boolean productExists(String productName) {
-        return productGroup.getProducts().get(productName) != null;
+        return productGroup.getGroup().get(productName) != null;
     }
 
     private void addRowToProduct(Row row) {
-        Product product = productGroup.getProducts().get(row.getProductName());
+        Product product = productGroup.getGroup().get(row.getProductName());
         product.addProductRow(row);
     }
 

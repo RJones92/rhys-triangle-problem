@@ -39,7 +39,7 @@ public class ProductGroup implements Group<Product> {
     public void setHighestDevelopmentYear(int highestDevelopmentYear) {
         this.highestDevelopmentYear = highestDevelopmentYear;
     }
-    
+
     @Override
     public void addObjectToGroup(String objectName, Product product) {
         this.products.put(objectName, product);
