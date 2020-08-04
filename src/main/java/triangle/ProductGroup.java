@@ -3,7 +3,7 @@ package triangle;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductGroup {
+public class ProductGroup implements Group<Product> {
 
     private int lowestOriginYear;
     private int highestDevelopmentYear;
@@ -23,7 +23,8 @@ public class ProductGroup {
         return highestDevelopmentYear;
     }
 
-    public Map<String, Product> getProducts() {
+    @Override
+    public Map<String, Product> getGroup() {
         return products;
     }
 
@@ -38,8 +39,9 @@ public class ProductGroup {
     public void setHighestDevelopmentYear(int highestDevelopmentYear) {
         this.highestDevelopmentYear = highestDevelopmentYear;
     }
-
-    public void addProduct(String productName, Product product){
-        this.products.put(productName, product);
+    
+    @Override
+    public void addObjectToGroup(String objectName, Product product) {
+        this.products.put(objectName, product);
     }
 }

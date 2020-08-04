@@ -3,8 +3,7 @@ package triangle;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TriangleGroup {
-    //stores commonalities across the group of triangles
+public class TriangleGroup implements Group<Triangle> {
 
     private Map<String, Triangle> triangles;
 
@@ -12,13 +11,13 @@ public class TriangleGroup {
         this.triangles = new HashMap();
     }
 
-    public Map<String, Triangle> getTriangles(){
+    @Override
+    public Map<String, Triangle> getGroup(){
         return triangles;
     }
 
-    public void addTriangle(Product product, ProductGroup productGroup){
-        triangles.put(product.getProductName(), new Triangle(productGroup, product));
+    @Override
+    public void addObjectToGroup(String objectName, Triangle triangle) {
+        triangles.put(objectName, triangle);
     }
-
-
 }
