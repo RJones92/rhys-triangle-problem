@@ -24,7 +24,7 @@ public class CsvWriter implements Writer{
     }
 
     private void writeTriangles(BufferedWriter csvWriter, TriangleGroup triangleGroup) throws IOException{
-        for (Triangle triangle : triangleGroup.getTriangles().values()){
+        for (Triangle triangle : triangleGroup.getGroup().values()){
             csvWriter.append(String.join(",", triangle.getTriangleData()));
             csvWriter.append("\n");
         }
