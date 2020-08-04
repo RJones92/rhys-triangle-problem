@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Controller {
 
-	private final CsvReader reader;
-	private final CsvWriter csvWriter;
+	private final Reader reader;
+	private final Writer writer;
 	private final ProductMapper productMapper;
 	private final TriangleMapper triangleMapper;
 
-	public Controller(CsvReader csvReader, CsvWriter csvWriter, ProductMapper productMapper, TriangleMapper triangleMapper) {
-		this.reader = csvReader;
-		this.csvWriter = csvWriter;
+	public Controller(Reader reader, Writer writer, ProductMapper productMapper, TriangleMapper triangleMapper) {
+		this.reader = reader;
+		this.writer = writer;
 		this.productMapper = productMapper;
 		this.triangleMapper = triangleMapper;
 	}
@@ -21,6 +21,6 @@ public class Controller {
 		List<Row> rowsOfData = reader.readCsv(inputFile);
 		ProductGroup productGroup = productMapper.mapProducts(rowsOfData);
 		TriangleGroup triangleGroup = triangleMapper.mapTriangles(productGroup);
-		csvWriter.writeCsv(triangleGroup, productGroup, outputFile);
+		writer.writeCsv(triangleGroup, productGroup, outputFile);
 	}
 }

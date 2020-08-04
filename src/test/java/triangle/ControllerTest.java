@@ -1,52 +1,50 @@
 package triangle;
 
-import com.sun.org.apache.xpath.internal.Arg;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 public class ControllerTest {
 
 	private Controller controller;
-
-	private CsvReader csvReader;
-	private CsvWriter csvWriter;
+	private Reader reader;
+	private Writer writer;
 	private ProductMapper productMapper;
 	private TriangleMapper triangleMapper;
 
 	@Before
 	public void setup(){
-		csvReader = mock(CsvReader.class);
-		csvWriter = mock(CsvWriter.class);
+		reader = mock(Reader.class);
+		writer = mock(Writer.class);
 		productMapper = mock(ProductMapper.class);
 		triangleMapper = mock(TriangleMapper.class);
 
-		controller = new Controller(csvReader, csvWriter, productMapper, triangleMapper);
+		controller = new Controller(reader, writer, productMapper, triangleMapper);
 	}
 
 	@Test
 	public void testSumTriangles() throws IOException {
 		String inputFile = "inputfile";
 		String outputFile = "outputfile";
-
 		ArrayList<Row> lines = new ArrayList<>();
-		when(csvReader.readCsv(eq(inputFile))).thenReturn(lines);
+		ProductGroup productGroup = mock(ProductGroup.class);
+		TriangleGroup triangleGroup = mock(TriangleGroup.class);
+
+		when(reader.readCsv(eq(inputFile))).thenReturn(lines);
+		when(productMapper.mapProducts(eq(lines))).thenReturn(productGroup);
+		when(triangleMapper.mapTriangles(eq(productGroup))).thenReturn(triangleGroup);
+
 		controller.sumTriangles(inputFile, outputFile);
 
-		ArgumentCaptor<ProductGroup> productGroupArgumentCaptor = ArgumentCaptor.forClass(ProductGroup.class);
+		verify(reader).readCsv(inputFile);
 		verify(productMapper).mapProducts(eq(lines));
-		verify(triangleMapper).mapTriangles(eq(productGroupArgumentCaptor.capture()));
-		verify(csvWriter).writeCsv(eq(triangleMapper), eq(productMapper), eq(outputFile));
-
-		ProductGroup productGroup = productGroupArgumentCaptor.getValue();
-		assertEquals(productGroup.getLowestOriginYear(), 5);
+		verify(triangleMapper).mapTriangles(eq(productGroup));
+		verify(writer).writeCsv(eq(triangleGroup), eq(productGroup), eq(outputFile));
 	}
 
 }
