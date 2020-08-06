@@ -4,8 +4,8 @@ public class TriangleMapper implements Mapper<ProductGroup, TriangleGroup> {
 
     private final TriangleGroup triangleGroup;
 
-    public TriangleMapper() {
-        triangleGroup = new TriangleGroup();
+    public TriangleMapper(TriangleGroup triangleGroup) {
+        this.triangleGroup = triangleGroup;
     }
 
     @Override
