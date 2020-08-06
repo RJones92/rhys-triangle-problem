@@ -6,8 +6,8 @@ public class ProductMapper implements Mapper<List<Row>, ProductGroup> {
 
     private final ProductGroup productGroup;
 
-    public ProductMapper() {
-        productGroup = new ProductGroup();
+    public ProductMapper(ProductGroup productGroup) {
+        this.productGroup = productGroup;
     }
 
     @Override

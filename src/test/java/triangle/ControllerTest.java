@@ -36,14 +36,14 @@ public class ControllerTest {
 		TriangleGroup triangleGroup = mock(TriangleGroup.class);
 
 		when(reader.readCsv(eq(inputFile))).thenReturn(lines);
-		when(productMapper.mapProducts(eq(lines))).thenReturn(productGroup);
-		when(triangleMapper.mapTriangles(eq(productGroup))).thenReturn(triangleGroup);
+		when(productMapper.mapObjects(eq(lines))).thenReturn(productGroup);
+		when(triangleMapper.mapObjects(eq(productGroup))).thenReturn(triangleGroup);
 
 		controller.sumTriangles(inputFile, outputFile);
 
 		verify(reader).readCsv(inputFile);
-		verify(productMapper).mapProducts(eq(lines));
-		verify(triangleMapper).mapTriangles(eq(productGroup));
+		verify(productMapper).mapObjects(eq(lines));
+		verify(triangleMapper).mapObjects(eq(productGroup));
 		verify(writer).writeCsv(eq(triangleGroup), eq(productGroup), eq(outputFile));
 	}
 

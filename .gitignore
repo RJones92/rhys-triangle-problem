@@ -8,3 +8,4 @@ outputFile.csv
 output.csv
 src/resources
 /target/
+*/META-INF/*
