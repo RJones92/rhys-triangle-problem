@@ -19,8 +19,7 @@ public class TriangleMapperTest {
 
     @Before
     public void setUp() {
-        triangleGroup = new TriangleGroup(); //POJO
-        triangleMapper = new TriangleMapper(triangleGroup);
+        triangleMapper = new TriangleMapper();
     }
 
     @Test
@@ -34,7 +33,7 @@ public class TriangleMapperTest {
         when(mockProductGroup.getGroup()).thenReturn(mock(Map.class));
         when(mockProductGroup.getGroup().values()).thenReturn(ProductValues);
 
-        triangleGroup = triangleMapper.mapObjects(mockProductGroup);
+        triangleGroup = triangleMapper.map(mockProductGroup);
         assertNotNull(triangleGroup);
         assertTrue(triangleGroup instanceof TriangleGroup);
 

@@ -10,7 +10,7 @@ public class ProductMapper implements Mapper<List<Row>, ProductGroup> {
     }
 
     @Override
-    public ProductGroup mapObjects(List<Row> rows) {
+    public ProductGroup map(List<Row> rows) {
         this.productGroup = new ProductGroup();
 
         for (Row row : rows) {

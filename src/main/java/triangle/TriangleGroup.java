@@ -17,7 +17,7 @@ public class TriangleGroup implements Group<Triangle> {
     }
 
     @Override
-    public void addObjectToGroup(String objectName, Triangle triangle) {
-        triangles.put(objectName, triangle);
+    public void addObjectToGroup(String triangleName, Triangle triangle) {
+        triangles.put(triangleName, triangle);
     }
 }

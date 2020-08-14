@@ -32,7 +32,7 @@ public class ProductMapperTest {
         lines.add(new Row("Product2", 3010, 3010, 32.4));
         lines.add(new Row("Product2", 2099, 3000, 45.6));
 
-        productGroup = productMapper.mapObjects(lines);
+        productGroup = productMapper.map(lines);
         assertNotNull(productGroup);
         assertTrue("Return type instance of ProductGroup", productGroup instanceof ProductGroup);
         assertEquals(1991, productGroup.getLowestOriginYear());

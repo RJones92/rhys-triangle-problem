@@ -10,7 +10,7 @@ public class Main {
                 new CsvReader(),
                 new CsvWriter(),
                 new ProductMapper(),
-                new TriangleMapper(new TriangleGroup()));
+                new TriangleMapper());
         controller.sumTriangles(args[0], args[1]);
     }
 
