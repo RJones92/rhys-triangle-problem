@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface Reader {
 
-    List<Row> readCsv(String inputFilename) throws IOException;
+    List<Row> read(String inputFilename) throws IOException;
 
 }

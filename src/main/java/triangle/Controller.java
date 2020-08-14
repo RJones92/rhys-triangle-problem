@@ -18,7 +18,7 @@ public class Controller {
 	}
 
 	public void sumTriangles(String inputFile, String outputFile) throws IOException {
-		List<Row> rowsOfData = reader.readCsv(inputFile);
+		List<Row> rowsOfData = reader.read(inputFile);
 		ProductGroup productGroup = productMapper.mapObjects(rowsOfData);
 		TriangleGroup triangleGroup = triangleMapper.mapObjects(productGroup);
 		writer.writeCsv(triangleGroup, productGroup, outputFile);

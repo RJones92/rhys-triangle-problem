@@ -9,7 +9,7 @@ import java.util.List;
 public class CsvReader implements Reader{
 
     @Override
-    public List<Row> readCsv(String filename) throws IOException{
+    public List<Row> read(String filename) throws IOException{
 
         List<Row> rowsFromCsv = new ArrayList<>();
 
