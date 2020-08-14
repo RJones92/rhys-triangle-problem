@@ -4,14 +4,15 @@ import java.util.List;
 
 public class ProductMapper implements Mapper<List<Row>, ProductGroup> {
 
-    private final ProductGroup productGroup;
+    private ProductGroup productGroup;
 
-    public ProductMapper(ProductGroup productGroup) {
-        this.productGroup = productGroup;
+    public ProductMapper() {
     }
 
     @Override
     public ProductGroup mapObjects(List<Row> rows) {
+        this.productGroup = new ProductGroup();
+
         for (Row row : rows) {
 
             if (isLowestOriginYear(row)) {

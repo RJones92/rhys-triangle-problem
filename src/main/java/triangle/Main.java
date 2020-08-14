@@ -9,7 +9,7 @@ public class Main {
         Controller controller = new Controller(
                 new CsvReader(),
                 new CsvWriter(),
-                new ProductMapper(new ProductGroup()),
+                new ProductMapper(),
                 new TriangleMapper(new TriangleGroup()));
         controller.sumTriangles(args[0], args[1]);
     }

@@ -17,8 +17,7 @@ public class ProductMapperTest {
 
     @Before
     public void setup(){
-        productGroup = new ProductGroup(); //POJO
-        productMapper = new ProductMapper(productGroup);
+        productMapper = new ProductMapper();
     }
 
     @Test
