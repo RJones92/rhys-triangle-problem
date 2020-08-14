@@ -21,6 +21,6 @@ public class Controller {
 		List<Row> rowsOfData = reader.read(inputFile);
 		ProductGroup productGroup = productMapper.mapObjects(rowsOfData);
 		TriangleGroup triangleGroup = triangleMapper.mapObjects(productGroup);
-		writer.writeCsv(triangleGroup, productGroup, outputFile);
+		writer.write(triangleGroup, productGroup, outputFile);
 	}
 }

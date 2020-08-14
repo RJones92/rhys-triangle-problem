@@ -4,5 +4,5 @@ import java.io.IOException;
 
 public interface Writer {
 
-    void writeCsv(TriangleGroup triangleGroup, ProductGroup productGroup, String outputFilename) throws IOException;
+    void write(TriangleGroup triangleGroup, ProductGroup productGroup, String outputFilename) throws IOException;
     }

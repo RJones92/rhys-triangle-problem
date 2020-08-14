@@ -7,7 +7,7 @@ import java.io.IOException;
 public class CsvWriter implements Writer{
 
     @Override
-    public void writeCsv(TriangleGroup triangleGroup, ProductGroup productGroup, String filename) throws IOException {
+    public void write(TriangleGroup triangleGroup, ProductGroup productGroup, String filename) throws IOException {
 
         try (BufferedWriter csvWriter = new BufferedWriter(new FileWriter(filename))) {
             writeFirstLine(csvWriter, productGroup);

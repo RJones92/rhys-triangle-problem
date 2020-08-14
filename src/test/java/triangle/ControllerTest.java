@@ -44,7 +44,7 @@ public class ControllerTest {
 		verify(reader).read(inputFile);
 		verify(productMapper).mapObjects(eq(lines));
 		verify(triangleMapper).mapObjects(eq(productGroup));
-		verify(writer).writeCsv(eq(triangleGroup), eq(productGroup), eq(outputFile));
+		verify(writer).write(eq(triangleGroup), eq(productGroup), eq(outputFile));
 	}
 
 }
